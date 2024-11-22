@@ -2,12 +2,14 @@
 
 namespace controller;
 
+use JetBrains\PhpStorm\NoReturn;
 use model\User;
 use viewModel\UserView;
 
 class UserController extends AbstractController
 {
 
+  #[NoReturn]
   public function list(): void
   {
     $allUsers = user::getAllUsers();

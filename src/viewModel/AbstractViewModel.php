@@ -37,7 +37,8 @@ class AbstractViewModel
     return strtolower( $className );
   }
 
-  #[NoReturn] public function renderFullHTML (): void
+  #[NoReturn]
+  public function renderFullHTML (): void
   {
     $it = new HTML_Template_IT( VIEW_PATH );;
     $it->loadTemplatefile( 'layout.html' );

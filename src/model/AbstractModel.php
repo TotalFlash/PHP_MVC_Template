@@ -8,6 +8,16 @@ class AbstractModel
 {
   protected int $id;
 
+  /**
+   * Get data from database. When the $where parameter is empty, then all data will be loaded.
+   *
+   * @param string $where
+   * @param array $whereParameter
+   * @param string $selector
+   * @param int $limit
+   *
+   * @return array
+   */
   protected static function read(string $where = '', array $whereParameter = [], string $selector = '*', int $limit = -1): array
   {
     global $db;
@@ -39,6 +49,11 @@ class AbstractModel
     }
   }
 
+  /**
+   * Gets the class name from the child class wich called this method
+   *
+   * @return string
+   */
   private static function getClassName(): string
   {
     return strtolower(str_replace('model\\', '', get_called_class()));
