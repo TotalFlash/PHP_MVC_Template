@@ -12,7 +12,7 @@ class UserController extends AbstractController
   #[NoReturn]
   public function list(): void
   {
-    $allUsers = user::getAllUsers();
+    $allUsers = User::getAllUsers();
     $viewModel = new UserView();
     $viewModel
       // Parst die Nutzerliste

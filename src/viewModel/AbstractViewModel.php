@@ -62,5 +62,6 @@ class AbstractViewModel
     $it->setVariable( $placeholder );
     $it->parseCurrentBlock();
     echo $it->get();
+    exit( 0 );
   }
 }
