@@ -14,7 +14,7 @@ class UserView extends AbstractViewModel
    * @return UserView - Returns itself
    * @throws \DateMalformedStringException
    */
-  public function list (array $users): self
+  public function renderList (array $users): self
   {
     $this->title = 'Nutzerliste';
     $it = $this->getTemplateEngine();

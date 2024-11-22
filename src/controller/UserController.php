@@ -16,7 +16,7 @@ class UserController extends AbstractController
     $viewModel = new UserView();
     $viewModel
       // Parst die Nutzerliste
-      ->list($allUsers)
+      ->renderList($allUsers)
       // Fügt die Nutzerliste in die Layoutdatei ein und parst den rest drumherum
       ->renderFullHTML();
   }
