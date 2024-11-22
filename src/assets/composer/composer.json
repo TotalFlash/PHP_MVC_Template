@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "classmap": [
+      "../../controller",
+      "../../model",
+      "../../viewModel",
+      "../lib"
+    ]
+  }
+}
