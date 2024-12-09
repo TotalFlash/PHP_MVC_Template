@@ -31,7 +31,7 @@ class UserView extends AbstractViewModel
       $it->parse( 'userListEntry' );
     }
     // Setzt global das fertige geparste HTML für den Content. D.h. im besten Fall alles, was dynamisch generiert wurde.
-    // Die Variable wird dann in der renderHTML() benutzt und der Content in die layout.html geladen
+    // Die Variable wird dann in der renderHTML() benutzt und der Content in die head.php geladen
     $this->html = $it->get();
     return $this;
   }

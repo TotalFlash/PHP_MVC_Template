@@ -6,7 +6,6 @@ use DateTime;
 
 class User extends AbstractModel
 {
-
   protected string $name;
   protected DateTime $createdAt;
 
@@ -35,6 +34,6 @@ class User extends AbstractModel
    */
   public static function getAllUsers (): array
   {
-    return self::read();
+    return self::read('', [], 'id, name');
   }
 }

@@ -3,8 +3,7 @@
     "classmap": [
       "../../controller",
       "../../model",
-      "../../viewModel",
-      "../lib"
+      "../../viewModel"
     ]
   }
 }
