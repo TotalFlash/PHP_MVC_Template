@@ -2,6 +2,8 @@
 
 namespace viewModel;
 
+use JetBrains\PhpStorm\NoReturn;
+
 class AbstractViewModel
 {
   protected string $title = '';
@@ -10,21 +12,26 @@ class AbstractViewModel
   protected bool $parseMenu = true;
   protected bool $parseFooter = true;
 
-  public function renderNav(): void
+  #[NoReturn]
+  public function renderFullHTML(): void
   {
-    if(!$this->parseMenu)
+    ob_start();
+    $nav = '';
+    $footer = '';
+    $content = $this->html;
+
+    if($this->parseMenu)
     {
-      return;
+      $nav = NavigationViewModel::renderNavigation();
     }
 
-    $filePath = VIEW_PATH . 'navigation/menu.php';
-    include $filePath;
-  }
+    if($this->parseFooter)
+    {
+      $footer = NavigationViewModel::renderFooter();
+    }
 
-  public function renderHead(): void
-  {
-    $title = $this->title;
-    $filePath = VIEW_PATH . 'navigation/head.php';
-    include $filePath;
+    include VIEW_PATH . 'layout.php';
+    echo ob_get_clean();
+    exit(0);
   }
 }

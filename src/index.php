@@ -7,8 +7,8 @@ require_once 'init/10_database.php';
 session_save_path('data/');
 
 // Default controller and action
-$controller = 'Shared';
-$action = 'home';
+$controller = 'User';
+$action = 'list';
 
 if(!empty($_GET['c']) && !empty($_GET['a']))
 {
@@ -28,9 +28,9 @@ if(file_exists($controllerPath)) {
       die('Method not found');
     }
   } else {
-    die('Class not found');
+    die('Class not found ' . $controllerClass);
   }
 } else {
-  die('Class file not found');
+  die('Class file not found ' . $controllerPath );
 }
 
