@@ -7,13 +7,13 @@ class NavigationViewModel extends AbstractViewModel
   public static function renderNavigation (): string
   {
     $pageParameter = [
-      'homeLink' => '?c=Pages&a=home',
+      'homeLink' => '?c=Shared&a=home',
       'userList' => '?c=User&a=list'
     ];
 
     ob_start();
-    include VIEW_PATH . "navigation/menu.php";
     extract( $pageParameter );
+    include VIEW_PATH . "navigation/menu.php";
     return ob_get_clean();
   }
 
