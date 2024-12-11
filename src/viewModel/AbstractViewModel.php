@@ -17,8 +17,8 @@ class AbstractViewModel
   {
     ob_start();
     $nav = '';
-    $footer = '';
     $content = $this->html;
+    $footer = '';
 
     if($this->parseMenu)
     {

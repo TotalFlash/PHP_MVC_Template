@@ -6,7 +6,7 @@ use Throwable;
 
 class AbstractModel
 {
-  protected int $id;
+  protected ?int $id = null;
 
   protected static function read(string $where = '', array $whereParameter = [], string $selector = '*', int $limit = -1): array
   {
@@ -39,8 +39,30 @@ class AbstractModel
     }
   }
 
+  protected static function insert(): int
+  {
+    global $db;
+    $className = self::getClassName();
+
+    $sql = "INSERT INTO {$className} () VALUES ()";
+
+
+
+    return $db->lastInsertId();
+  }
+
   private static function getClassName(): string
   {
     return strtolower(str_replace('model\\', '', get_called_class()));
+  }
+
+  public function getId (): int
+  {
+    return $this->id;
+  }
+
+  public function setId (int $id): void
+  {
+    $this->id = $id;
   }
 }

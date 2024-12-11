@@ -20,6 +20,7 @@ class User extends AbstractModel
     if (!is_null( $id ))
     {
       $user = self::read( 'id = :id', [ ':id' => $id ], '*', 1 );
+      $this->id = $user[ 'id' ];
       $this->name = $user[ 'name' ];
       $this->createdAt = new DateTime( $user[ 'createdAt' ] );
     }
@@ -36,4 +37,36 @@ class User extends AbstractModel
   {
     return self::read('', [], 'id, name');
   }
+
+  public static function create (): int
+  {
+    // validierung
+    // passwort hash und salt
+    //
+
+
+    return 1;
+  }
+
+  public function getName (): string
+  {
+    return $this->name;
+  }
+
+  public function setName (string $name): void
+  {
+    $this->name = $name;
+  }
+
+  public function getCreatedAt (): DateTime
+  {
+    return $this->createdAt;
+  }
+
+  public function setCreatedAt (DateTime $createdAt): void
+  {
+    $this->createdAt = $createdAt;
+  }
+
+
 }

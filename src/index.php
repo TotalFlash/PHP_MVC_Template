@@ -7,8 +7,8 @@ require_once 'init/10_database.php';
 session_save_path( 'data/' );
 
 // Default controller and action
-$controller = 'User';
-$action = 'list';
+$controller = 'Shared';
+$action = 'home';
 
 if (!empty( $_GET[ 'c' ] ) && !empty( $_GET[ 'a' ] ))
 {
@@ -17,29 +17,23 @@ if (!empty( $_GET[ 'c' ] ) && !empty( $_GET[ 'a' ] ))
 }
 
 $controllerPath = CONTROLLER_PATH . "{$controller}Controller.php";
-if (file_exists( $controllerPath ))
-{
-  $controllerClass = "\\controller\\{$controller}Controller";
-  require_once $controllerPath;
-  if (class_exists( $controllerClass ))
-  {
-    $controllerInstance = new $controllerClass( $controller );
-    if (method_exists( $controllerInstance, $action ))
-    {
-      $controllerInstance->$action();
-    }
-    else
-    {
-      die( "Method not found: $action" );
-    }
-  }
-  else
-  {
-    die( "Controller class not found: $controllerClass" );
-  }
-}
-else
+if (!file_exists( $controllerPath ))
 {
   die( "Controller class file not found: $controllerPath ");
 }
 
+$controllerClass = "\\controller\\{$controller}Controller";
+require_once $controllerPath;
+if (!class_exists( $controllerClass ))
+{
+  die( "Controller class not found: $controllerClass" );
+}
+
+$controllerInstance = new $controllerClass( $controller );
+if (!method_exists( $controllerInstance, $action ))
+{
+  die( "Method not found: $action" );
+
+}
+
+$controllerInstance->$action();

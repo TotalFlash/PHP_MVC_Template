@@ -8,7 +8,9 @@ class NavigationViewModel extends AbstractViewModel
   {
     $pageParameter = [
       'homeLink' => '?c=Shared&a=home',
-      'userList' => '?c=User&a=list'
+      'userList' => '?c=User&a=list',
+      'userCreateLink' => '?c=User&a=edit',
+      'userEditLink' => '?c=User&a=edit&userId=1',
     ];
 
     ob_start();

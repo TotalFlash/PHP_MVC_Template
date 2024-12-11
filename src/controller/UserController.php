@@ -15,4 +15,17 @@ class UserController extends AbstractController
       ->renderList($allUsers)
       ->renderFullHTML();
   }
+
+  public function edit(): void
+  {
+    // Permission Check
+
+    $userId = $_GET['userId'] ?? null;
+    $user = new User($userId);
+
+    $userViewModel = new UserViewModel();
+    $userViewModel
+      ->renderEditView($user)
+      ->renderFullHTML();
+  }
 }
