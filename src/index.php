@@ -5,6 +5,9 @@ require_once 'init/10_database.php';
 
 // Session start
 session_save_path( 'data/' );
+session_start();
+
+$loggedIn = $_SESSION['loggedIn'] ?? false;
 
 // Default controller and action
 $controller = 'Shared';
@@ -33,7 +36,6 @@ $controllerInstance = new $controllerClass( $controller );
 if (!method_exists( $controllerInstance, $action ))
 {
   die( "Method not found: $action" );
-
 }
 
 $controllerInstance->$action();
