@@ -39,7 +39,7 @@ class AbstractModel
     }
   }
 
-  protected static function insert(): int
+  protected static function insert(array $parameterForInsert): int
   {
     global $db;
     $className = self::getClassName();

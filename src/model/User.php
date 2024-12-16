@@ -44,7 +44,6 @@ class User extends AbstractModel
     // passwort hash und salt
     //
 
-
     return 1;
   }
 
@@ -67,6 +66,4 @@ class User extends AbstractModel
   {
     $this->createdAt = $createdAt;
   }
-
-
 }
