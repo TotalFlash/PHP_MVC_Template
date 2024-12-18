@@ -35,7 +35,7 @@ class User extends AbstractModel
    */
   public static function getAllUsers (): array
   {
-    return self::read('', [], 'id, name');
+    return self::read( '', [], 'id, name' );
   }
 
   public static function create (): int
@@ -45,6 +45,40 @@ class User extends AbstractModel
     //
 
     return 1;
+  }
+
+  public static function login (string $username, string $password): bool
+  {
+    $user = User::read( 'name = :username', [ ':username' => $username ], '*', 1);
+    if (empty( $user ))
+    {
+      return false;
+    }
+
+    if ($password !== $user[ 'password' ])
+    {
+      return false;
+    }
+
+    $_SESSION[ 'userId' ] = $user[ 'id' ];
+    $_SESSION[ 'name' ] = $user[ 'name' ];
+    $_SESSION[ 'loggedIn' ] = true;
+    return true;
+  }
+
+  public static function setNewSessionData (): void
+  {
+    $user = self::read( 'id = :id', [ ':id' => $_SESSION[ 'userId' ] ], '*', 1);
+    $_SESSION[ 'name' ] = $user[ 'name' ];
+    $_SESSION[ 'createdAt' ] = $user[ 'createdAt' ];
+  }
+
+  public static function hasPermission (int $permissionFlag): void
+  {
+    if($_SESSION[ 'permission' ] !== $permissionFlag)
+    {
+      die();
+    }
   }
 
   public function getName (): string

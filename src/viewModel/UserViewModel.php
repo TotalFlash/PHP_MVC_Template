@@ -39,4 +39,12 @@ class UserViewModel extends AbstractViewModel
     $this->html = ob_get_clean();
     return $this;
   }
+
+  public function renderLogin (string $errors = ''): self
+  {
+    ob_start();
+    include VIEW_PATH . 'user/login.php';
+    $this->html = ob_get_clean();
+    return $this;
+  }
 }

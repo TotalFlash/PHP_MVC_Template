@@ -1,17 +1,23 @@
 <?php
+
+use model\User;
+
 require_once 'assets/composer/vendor/autoload.php';
 require_once 'config/config.php';
 require_once 'init/10_database.php';
 
 // Session start
-session_save_path( 'data/' );
+session_save_path( 'data' );
 session_start();
 
 $loggedIn = $_SESSION['loggedIn'] ?? false;
-
+if($loggedIn)
+{
+  User::setNewSessionData();
+}
 // Default controller and action
-$controller = 'Shared';
-$action = 'home';
+$controller = 'User';
+$action = 'login';
 
 if (!empty( $_GET[ 'c' ] ) && !empty( $_GET[ 'a' ] ))
 {
